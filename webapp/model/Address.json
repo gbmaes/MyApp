@@ -1,0 +1,12 @@
+{
+    "Name": "SAP SE",
+    "Street": "Buonnapizza Str",
+    "HouseNumber": "16",
+    "ZIPCode": "69190",
+    "City": "Roma",
+    "Country": "Italy",
+    "Url": "http://www.sap.com",
+    "Twitter": "@sap",
+    "Tel" : "+49 6227 747474",
+    "Email" : "info@sap.com"
+}

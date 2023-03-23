@@ -1,26 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!--start-->
+    <meta name="description" content="Signature Pad - HTML5 canvas based smooth signature drawing using variable width spline interpolation.">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+  
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+    <link rel="stylesheet" href="css/signature-pad.css">
+    <!--end-->
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>OpenSAP - Developing Web Apps with SAPUI5</title>
+    <title>Reisekostenbericht</title>
+<!--start-->
+    <!-- <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-39365077-1']);
+        _gaq.push(['_trackPageview']);
+    
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+      </script> -->
+    <!--end-->
     <script 
         id="sap-ui-bootstrap"
-		data-sap-ui-libs="sap.m"
-		src="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js"
-		data-sap-ui-theme="sap_horizon"
+        type="text/javascript"
+		    data-sap-ui-libs="sap.m"
+		    src="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js"
+		    data-sap-ui-theme="sap_horizon"
         data-sap-ui-compatVersion="edge"
         data-sap-ui-preload="async"
-        data-sap-ui-resourceroots='{"opensap.myapp" : "./"}'>
+        data-sap-ui-resourceroots='{"opensap.myapp" : "./"}'
+        data-sap-ui-xx-bindingSyntax="complex">
 	</script>
-	<script>
+	<script id="oView">
 		    sap.ui.getCore().attachInit(function () {
             new sap.ui.core.ComponentContainer({
             name : "opensap.myapp"
            }).placeAt("content");
         });
+        // //signature function
+        // sap.ui.getCore().attachInit( function () {
+        //     // prepare app
+		// 	var app = new sap.m.App({id:"app",initialPage:"main"});
+		// 	var page = sap.ui.view({id:"main",viewName:"sap.ui.root.webapp.main",type:sap.ui.core.mvc.ViewType.XML});
+		// 	var basic = sap.ui.view({id:"basic",viewName:"sap.ui.root.webapp.basic",type:sap.ui.core.mvc.ViewType.XML});
+		// 	app.addPage(page).addPage(basic);
+		// 	app.placeAt("content");
+	    //     }); 
 	</script>
 </head>
-<body class="sapUiBody" id="content">
+<body onselectstart="return false" class="sapUiBody" role="application">
+    <div id="content"></div>
+<!-- start-->
+    <!-- <div id="signature-pad" class="signature-pad">
+        <div class="signature-pad--body">
+          <canvas></canvas>
+        </div>
+        <div class="signature-pad--footer">
+          <div class="description">Sign above</div>
+    
+          <div class="signature-pad--actions">
+            <div class="column">
+              <button type="button" class="button clear" data-action="clear">Clear</button>
+              <button type="button" class="button" data-action="change-background-color">Change background color</button>
+              <button type="button" class="button" data-action="change-color">Change color</button>
+              <button type="button" class="button" data-action="change-width">Change width</button>
+              <button type="button" class="button" data-action="undo">Undo</button>
+    
+            </div>
+            <div class="column">
+              <button type="button" class="button save" data-action="save-png">Save as PNG</button>
+              <button type="button" class="button save" data-action="save-jpg">Save as JPG</button>
+              <button type="button" class="button save" data-action="save-svg">Save as SVG</button>
+              <button type="button" class="button save" data-action="save-svg-with-background">Save as SVG with background</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <script src="js/signature_pad.umd.js"></script>
+      <script src="js/app.js"></script> -->
+      <!--end -->
+      
 </body>
 </html>

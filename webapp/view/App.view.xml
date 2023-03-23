@@ -1,100 +1,109 @@
-
-<mvc:View
-displayBlock="true"
-xmlns:mvc="sap.ui.core.mvc"
-xmlns:core="sap.ui.core"
-xmlns:l="sap.ui.layout"
-xmlns:f="sap.ui.layout.form"
+<mvc:View displayBlock="true" 
+xmlns:mvc="sap.ui.core.mvc" 
+xmlns:core="sap.ui.core" 
+xmlns:l="sap.ui.layout" 
+xmlns:f="sap.ui.layout.form" 
 xmlns="sap.m"
-controllerName="opensap.myapp.controller.App">
-    <App>
+xmlns:pad="opensap.myapp.controller.sign"
+xmlns:signature_pad="signature_pad.docs.js" 
+xmlns:html="http://www.w3.org/1999/xhtml" 
+controllerName="opensap.myapp.controller.app">
+<App id="app">
         <pages>
-            <Page title="openSAP - Developing with SAPUI5">
+            <Page title="" showHeader="true">
                 <content>
-                    <IconTabBar
-                        id="idTopLevelIconTabBar" class="sapUiResponsiveContentPadding">
-                        <items>
-                            <IconTabFilter id="start" text="{i18n>gettingStartedFilter}">
-    <Carousel class="sapUiContentPadding" loop="true">
-        <pages>
-            <Image src="https://fastly.picsum.photos/id/196/536/354.jpg?hmac=C1zNgezDOBJP6WDzRvqD3NLsZwtjX29dlcSShIUFPEc" height="400px"/>
-            <Image src="https://fastly.picsum.photos/id/28/536/354.jpg?hmac=l9BWxpSM7D-htzTHL8H6W_yUdMVCa3VjyNs6LgzApKU" height="400px"/>
-			<Image src="https://fastly.picsum.photos/id/668/200/300.jpg?hmac=E7YE9NQG89nCsmW1hc-1nACBZTj9ll8IiXS65WjdD28" height="400px"/>
-			<Image src="https://fastly.picsum.photos/id/1070/200/300.jpg?hmac=dJNTYlLwT_0RupxbJNbw5Wj-q2cCTB4Xh-GqWRofIIc" height="400px"/>
-        </pages>
-    </Carousel>
-    <Button
-    text="{i18n>showHelloButtonText}"
-    press="onShowHello"/>
-    <Input
-		value="{helloPanel>/recipient/name}"
-		description="Hello {helloPanel>/recipient/name}"
-		valueLiveUpdate="true"
-		width="60%"/>
-            	    </IconTabFilter>
-                            <IconTabFilter id="layouts" text="{i18n>layoutFilter}">
-                                <MessageStrip
-									type="Information"
-									showIcon="true"
-									text="Here's a Form Layout inside an Icon Tab Bar. The labels on the right hand-side are aligned to the right, while the input fields are aligned to the left. The icons of 'Publish' and 'Save Draft' button are taken from the UI5 icon library. You can find them in the icon explorer by their names 'save' and 'outbox'. Finally, please note the usage of predefined margins to create a space below this MessageStrip control and above the Toolbar control."/>
-                                    <f:SimpleForm id="simpleFormChange"
-									title="Address"
-									editable="true"
-									class="sapUiSmallMarginTopBottom">
-									<f:content>
-										<Label text="{i18n>layoutFormName}"/>
-										<Input value="{address>/Name}"/>
-										<Label text="{i18n>layoutFormStreet}"/>
-										<Input value="{address>/Street}"/>
-										<Label text="{i18n>layoutFormHouseNumber}"/>
-										<Input value="{address>/HouseNumber}"/>
-										<Label text="{i18n>layoutFormZIPCode}"/>
-										<Input value="{address>/ZIPCode}"/>
-										<Label text="{i18n>layoutFormCity}"/>
-										<Input value="{address>/City}"/>
-											<Label text="{i18n>layoutFormCountry}"/>
-												<Select selectedItem="{address>/Country}">
-												<items>
-												<core:Item text="{i18n>layoutCountryItaly}"/>
-												<core:Item text="{i18n>layoutCountryGermany}"/>
-												<core:Item text="{i18n>layoutCountryUSA}"/>
-												<core:Item text="{i18n>layoutCountryEngland}"/>
-                                                <core:Item text="{i18n>layoutCountryBrazil}"/>
-                                                <core:Item text="{i18n>layoutCountryPortugal}"/>
-											</items>
-										</Select>
-									</f:content>
-									</f:SimpleForm>
-                                <Toolbar class="sapUiSmallMarginBottom">
-                                    <ToolbarSpacer/>
-                                    <Button
-										text="{i18n>layoutPublishButton}"
-										icon="sap-icon://outbox"
-										type="Accept"/>
-									<Button
-										text="{i18n>layoutDraftButton}" 
-                                        icon="sap-icon://save"/>
-                                </Toolbar>
-                            </IconTabFilter>
-							<!--the 'text' below usually comes from resourcemodel-->
-							<IconTabFilter 
-							text="Data Binding"
-							key="db">
-							<List
-							headerText="Products"
-							width="auto"
-							items="{/ProductSet}">
-							<items>
-								<ObjectListItem
-												title="{Name}"
-												number="{Price}"
-												intro="{ProductID}"
-												numberUnit="{CurrencyCode}"/>
-							</items>
-							</List>
-							</IconTabFilter>
-                        </items>
-                    </IconTabBar>
+                    <f:SimpleForm width="100%" id="simpleFormChange" title="Reisekostenbericht" editable="true" class="sapUiSmallMarginTopBottom">
+                        <f:content>
+                            <l:VerticalLayout class="sapUiContentPadding" width="50%">
+                                <l:BlockLayoutCell width="3">
+                                    <!-- section1-->
+                                    <Label text="{i18n>layoutFormName}" />
+                                    <Input value="{address>/Name}" />
+                                    <Label text="{i18n>layoutFormReiseArt}" />
+                                    <VBox>
+                                        <RadioButtonGroup>
+                                            <RadioButton id="Checkbox1" text="Inland" select="handleOrderSelected" />
+                                            <RadioButton id="Checkbox2" text="Ausland Land" select="handleRejectSelected" />
+                                            <RadioButton id="Checkbox3" text="Beleg ohne Reise" />
+                                        </RadioButtonGroup>
+                                    </VBox>
+                                    <Label text="{i18n>layoutFormAbfahrtsort}" />
+                                    <Input value="{address>/Abfahrtsort}" />
+                                    <Label text="{i18n>layoutFormZwischenort}" />
+                                    <Input value="{address>/Zwischenort}" />
+                                    <Label text="{i18n>layoutFormZielort}" />
+                                    <Input value="{address>/Zielort}" />
+                                    <Label text="{i18n>layoutFormZweckDerReise}" />
+                                    <Input value="{address>/ZweckDerReise}" />
+                                    <Label text="{i18n>layoutFormVon}" labelFor="DTP1" />
+                                    <DateTimePicker id="DTP1" placeholder="Enter Date" change="handleChange" />
+                                    <Label text="{i18n>layoutFormBis}" labelFor="DTP2" />
+                                    <DateTimePicker id="DTP2" placeholder="Enter Date" change="handleChange" />
+                                    <Label text="{i18n>layoutFormKostenstelle}" />
+                                    <Input value="{address>/Kostenstelle}" />
+                                    <Label text="{i18n>layoutFormKostentraeger}" labelFor="inputNumber" />
+                                    <Input id="inputNumber" type="Number" placeholder="Enter a number" />
+                                    <VBox>
+                                        <Label text="{i18n>layoutFormOrtswechsel}" />
+                                        <CheckBox id="ch1" selected="false" activeHandling="true" visible="true" select="checkDone" />
+                                    </VBox>
+                                    <!-- section2 (this must be shown/hide -->
+
+                                    <Text text="{address>/Ortswechsel}" />
+                                    <Label id="labelVon" visible="false" text="{i18n>layoutFormVon}" labelFor="DTP3" />
+                                    <DateTimePicker id="DTP3" visible="false" placeholder="Enter Date" change="handleChange" />
+                                    <Label id="labelBis" visible="false" text="{i18n>layoutFormBis}" labelFor="DTP4" />
+                                    <DateTimePicker id="DTP4" visible="false" placeholder="Enter Date" change="handleChange" />
+                                    <Label id="labelKost" visible="false" text="{i18n>layoutFormKostentraeger}" labelFor="inputNumber2" />
+                                    <Input id="inputNumber2" visible="false" type="Number" placeholder="Enter a number" />
+                                    <Label class="" text="{i18n>layoutFormKilometer}" labelFor="inputNumber3" />
+                                    <Input id="inputNumber3" type="Number" placeholder="Enter a number" class="" />
+                                    <VBox>
+                                        <RadioButtonGroup>
+                                            <RadioButton id="Checkbox4" text="Firmen-PKW" select="handleOrderSelected" />
+                                            <RadioButton id="Checkbox5" text="Privat-PKW" select="handleRejectSelected" />
+                                        </RadioButtonGroup>
+                                    </VBox>
+                                    <Label text="{i18n>layoutMitfahrer}" />
+                                    <Input value="{address>/Mitfahrer}" />
+                                    <Label class="sapUiSmallMarginBottom" text="{i18n>layoutUebernachtung}" />
+                                    <HBox>
+                                        <RadioButton id="Checkbox6" text="Hotel" select="handleOrderSelected" />
+                                        <CheckBox id="Checkbox7" text="Ohne Frühstück" select="handleRejectSelected" />
+                                    </HBox>
+                                    <VBox>
+                                        <RadioButton id="Checkbox8" text="Privat" />
+                                    </VBox>
+                                    <Label text="{i18n>layoutSachbezuege}" />
+                                    <VBox>
+                                        <CheckBox id="ch2" selected="false" activeHandling="true" visible="true" select="checkDone2" />
+                                        <!-- when checkbox checked, display date/time-->
+                                        <Label id="labelVon2" visible="false" text="{i18n>layoutFormVon}" labelFor="DTP6" />
+                                        <DatePicker id="DTP6" visible="false" placeholder="Enter Date" change="handleChange" />
+                                        <Label id="labelBis2" visible="false" text="{i18n>layoutFormBis}" labelFor="DTP7" />
+                                        <DatePicker id="DTP7" visible="false" placeholder="Enter Date" change="handleChange" />
+                                        <CheckBox id="Checkbox9" visible="false" text="Frühstück" select="handleOrderSelected" />
+                                        <CheckBox id="Checkbox10" visible="false" text="Mitagg" select="handleRejectSelected" />
+                                        <CheckBox id="Checkbox11" visible="false" text="Abendessen" />
+                                    </VBox>
+                                    <Label class="" text="{i18n>layoutBarauslagen}" labelFor="inputNumber4" />
+                                    <Input id="inputNumber4" type="Number" placeholder="Enter a number" class="" />
+                                    <Label text="{i18n>layoutBemerkungen}" />
+                                    <Input value="{address>/Bemerkungen}" />
+                                    <VBox>
+                                        <core:HTML id="html" />
+                                    </VBox>
+                                    <Label text="{i18n>layoutDatum}" labelFor="DTP5" />
+                                    <DatePicker id="DT5" placeholder="Enter Date" change="handleChange" class="" showFooter="true" />
+                                    <HBox>
+                                        <Button id="" text="Unterschrift " press="onSign" />
+                                            <!--
+                                                        <Button id="Signature" title="Basic" description="Basic signature pad" type="Navigation" press="onItemPressed"/>-->                                                   
+                                    </HBox>
+                                </l:BlockLayoutCell>
+                            </l:VerticalLayout>
+                        </f:content>
+                    </f:SimpleForm>
                 </content>
             </Page>
         </pages>

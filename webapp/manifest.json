@@ -43,17 +43,9 @@
 					"bundleName": "opensap.myapp.i18n.i18n"
 				}
 			},
-			"helloPanel": {
-				"type": "sap.ui.model.json.JSONModel",
-				"uri": "model/HelloPanel.json"
-			},
-			"address": {
-				"type": "sap.ui.model.json.JSONModel",
-				"uri": "model/Address.json"
-			},
-			"" : {
-				"dataSource": "ES5"
-			}
+			"MyViewModel": {
+				"type": "sap.ui.model.json.JSONModel"
+			 }
 		},
 		"contentDensities": {
 			"compact": true,
